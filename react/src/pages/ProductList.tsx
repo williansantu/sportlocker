@@ -1,24 +1,24 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import { Button, Container, Grid } from "@mui/material";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { Link } from "react-router-dom";
-import { ProductService } from "../services/product.service";
-import { useQuery } from "react-query";
-import IProduct from "../interfaces/product";
-import { useCart } from "../contexts/CartContext";
+import { Button, Container, Grid } from "@mui/material"
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import { Link } from "react-router-dom"
+import { ProductService } from "../services/product.service"
+import { useQuery } from "react-query"
+import IProduct from "../interfaces/product"
+import { useCart } from "../contexts/CartContext"
 
 export default function ProductList(){
-    const [products, setProducts] = useState([] as IProduct[]);
+    const [products, setProducts] = useState([] as IProduct[])
 
     const productService = new ProductService()
 
-    const { addToCart } = useCart();
+    const { addToCart } = useCart()
 
     useQuery({
         queryKey: ['get-products'],

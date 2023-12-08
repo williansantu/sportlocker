@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import { Button, Container, Grid } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
-import { useQuery } from "react-query";
-import { ProductService } from "../services/product.service";
-import { useCart } from "../contexts/CartContext";
-import IProduct from "../interfaces/product";
+import { Button, Container, Grid } from "@mui/material"
+import { Link, useParams } from "react-router-dom"
+import { useQuery } from "react-query"
+import { ProductService } from "../services/product.service"
+import { useCart } from "../contexts/CartContext"
+import IProduct from "../interfaces/product"
 
 export default function ProductDetails(){
-    const [product, setProduct] = useState({} as IProduct);
+    const [product, setProduct] = useState({} as IProduct)
     
     const productService = new ProductService()
 
     const { id } = useParams()
 
-    const { addToCart } = useCart();
+    const { addToCart } = useCart()
 
     useQuery({
         queryKey: ['get-product'],

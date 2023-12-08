@@ -1,15 +1,15 @@
-import { Button, Container, Grid } from "@mui/material";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { useCart } from "../contexts/CartContext";
-import { Link } from "react-router-dom";
+import { Button, Container, Grid } from "@mui/material"
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import { useCart } from "../contexts/CartContext"
+import { Link } from "react-router-dom"
 
 export default function Cart(){
-    const { cartItems, clearCart, getTotal } = useCart();
+    const { cartItems, clearCart, getTotal } = useCart()
 
     function handleClearCart() {
         clearCart()

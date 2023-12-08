@@ -1,5 +1,5 @@
 import API_URL from "../environment"
-import axios from "axios";
+import axios from "axios"
 
 export class ProductService {
     defaultPath: string
