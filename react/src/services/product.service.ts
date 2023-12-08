@@ -9,10 +9,10 @@ export class ProductService {
     }
 
     async get(){
-        return axios.get(this.defaultPath)
+        return await axios.get(this.defaultPath)
     }
 
     async find(id: string){
-        return axios.get(this.defaultPath + id)
+        return await axios.get(this.defaultPath + id)
     }
 }

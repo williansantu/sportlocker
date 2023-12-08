@@ -24,7 +24,6 @@ export default function ProductList(){
         queryKey: ['get-products'],
         queryFn: () => productService.get(),
         onSuccess({data}) {
-            console.log('products', data)
             setProducts(data)
         }
     })
@@ -35,11 +34,11 @@ export default function ProductList(){
 
     return (
         <Container>
-            <Grid container>
-                <Grid item xs={8}>
+            <Grid container alignItems={'center'}>
+                <Grid item xs={8} textAlign={'center'}>
                     <h3>Product List</h3>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} textAlign={'center'}>
                     <Link to='/cart'>
                         <Button variant="contained">
                             Go to Cart

@@ -3,7 +3,7 @@ In development I used XAMPP to run the server.
 
 By default, I'm using localhost as the api url
 
-- If you want to change it, you'll have to change it in the react too, in the <b>env</b> file. Path: (react\src\services\env.ts)
+- If you want to change it, you'll have to change it in the react too, in the <b>env</b> file. Path: (react\src\environment\index.ts)
 
 1 -  Install the dependencies
 

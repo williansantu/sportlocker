@@ -18,20 +18,22 @@ export default function Cart(){
     return (
         <Container>
             <Grid container>
-                <Grid item xs={8}>
-                    <h3>Cart</h3>
-                </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} textAlign={'center'}>
                     <Link to="/">
-                        <Button variant="contained">
-                            Back to Products
+                        <Button variant="text">
+                            View Products
                         </Button>
                     </Link>
                 </Grid>
-                <Grid item xs={2}>
-                    <Button variant="contained" color="error" onClick={handleClearCart}>
-                        Clear Cart
-                    </Button>
+                <Grid item xs={8} textAlign={'center'}>
+                    <h3>Cart</h3>
+                </Grid>
+                <Grid item xs={2} textAlign={'center'}>
+                    {cartItems.length > 0 && (
+                        <Button variant="contained" color="error" onClick={handleClearCart}>
+                            Clear Cart
+                        </Button>
+                    )}
                 </Grid>
             </Grid>
             <Grid container>
