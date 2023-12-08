@@ -8,9 +8,30 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Link } from "react-router-dom";
+import { ProductService } from "../services/product.service";
+import { useQuery } from "react-query";
+import IProduct from "../interfaces/product";
+import { useCart } from "../contexts/CartContext";
 
 export default function ProductList(){
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([] as IProduct[]);
+
+    const productService = new ProductService()
+
+    const { addToCart } = useCart();
+
+    useQuery({
+        queryKey: ['get-products'],
+        queryFn: () => productService.get(),
+        onSuccess({data}) {
+            console.log('products', data)
+            setProducts(data)
+        }
+    })
+
+    function handleAddToCart(product: IProduct){
+        addToCart(product)
+    }
 
     return (
         <Container>
@@ -27,34 +48,47 @@ export default function ProductList(){
                 </Grid>
             </Grid>
             <Grid container>
-            <TableContainer>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                    </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {products.map((product) => (
-                        <TableRow
-                        key={product.name}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                        <TableCell component="th" scope="row">
-                            {product.name}
-                        </TableCell>
-                        <TableCell align="right">{product.calories}</TableCell>
-                        <TableCell align="right">{product.fat}</TableCell>
-                        <TableCell align="right">{product.carbs}</TableCell>
-                        <TableCell align="right">{product.protein}</TableCell>
-                        </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
+                <TableContainer>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>ID</TableCell>
+                                <TableCell align="center">Name</TableCell>
+                                <TableCell align="center">Price</TableCell>
+                                <TableCell align="center">In Stock</TableCell>
+                                <TableCell align="center">Category</TableCell>
+                                <TableCell align="center">Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                        {products.map((product) => (
+                            <TableRow
+                            key={product.id}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {product.id}
+                                </TableCell>
+                                <TableCell align="center">{product.name}</TableCell>
+                                <TableCell align="center">{product.price}</TableCell>
+                                <TableCell align="center">{product.available_stock}</TableCell>
+                                <TableCell align="center">{product?.category?.name}</TableCell>
+                                <TableCell align="center">
+                                    <Grid container justifyContent={"space-around"}>
+                                        <Link to={'/product-details/' + product.id}>
+                                            <Button variant="text">
+                                                View Details
+                                            </Button>
+                                        </Link>
+                                        <Button variant="contained" onClick={() => handleAddToCart(product) }>
+                                            Add to Cart
+                                        </Button>
+                                    </Grid>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                        </TableBody>
+                    </Table>
                 </TableContainer>
             </Grid>
         </Container>

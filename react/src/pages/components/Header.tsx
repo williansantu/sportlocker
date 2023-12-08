@@ -1,7 +1,7 @@
 export default function Header(){
     return (
-        <h1>
-            im header
-        </h1>
+        <div className="header">
+            <h1>sportlocker test</h1>
+        </div>
     )
 }
