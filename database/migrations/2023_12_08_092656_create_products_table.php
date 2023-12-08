@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 8, 2);
-            $table->integer('quantity');
+            $table->integer('available_stock');
             $table->boolean('active')->default(true);
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
